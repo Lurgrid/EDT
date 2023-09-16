@@ -15,8 +15,8 @@
             unset($example3[$key]["UID"]);
             unset($example3[$key]["VALARM"]);
             unset($example3[$key]["LAST-MODIFIED"]);
-            $desc = explode("\n",$example3[$key]["DESCRIPTION"]);
-            $example3[$key]["DESCRIPTION"] = $desc[count($desc)-3];
+            preg_match("/^([^\s\d]* [^\s\d]*)$/m", $example3[$key]["DESCRIPTION"], $desc);
+            $example3[$key]["DESCRIPTION"] = $desc[0];
             $EDT[$example3[$key]["DTSTART"][0]->format("Y-m-d")][$example3[$key]["DTSTART"][1]] = $example3[$key];
         }
         ksort($EDT);

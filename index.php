@@ -76,7 +76,9 @@
                             }
                             echo "\">\n";
                             echo "<p class=\"name\">". $course["SUMMARY"] ."</p>\n";
-                            preg_match("/^(\w[a-zA-Z@#0-9.]* \w[a-zA-Z@#0-9.]*) \(.*\) ?([A-Z]{0,1})?.*$/", $course["LOCATION"], $matchs);
+                            preg_match("/^((\w[a-zA-Z@#0-9.]* \w[a-zA-Z@#0-9.]*) \(.*\) ?([A-Z]{0,1})?.*)|((\S*) (\S*))$/m", $course["LOCATION"], $matchs);
+                            //preg_match("/^(\w[a-zA-Z@#0-9.]* \w[a-zA-Z@#0-9.]*) \(.*\) ?([A-Z]{0,1})?.*$/", $course["LOCATION"], $matchs);
+                            array_shift($matchs);
                             array_shift($matchs);
                             $string = implode(" ", $matchs);
                             echo "<p class=\"where\"><img alt=\"location\" src=\"./styles/location.svg\">". $string ."</p>\n";
